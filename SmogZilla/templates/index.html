@@ -15,14 +15,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <header>
-    <div class="container">
-        <nav class="navbar m-4 rounded navbar-expand-lg bg-body-tertiary">
+    <div class="header-background p-4">
+        <nav class="container navbar rounded navbar-expand-lg bg-body-tertiary">
             <div class="container">
                 <a class="navbar-brand" href="">
-                    <img src="{% static 'images/logo.png' %}" style="width: 200px; height: auto">
+                    <img class="rounded" src="{% static 'images/logo.png' %}" style="width: 200px; height: auto">
                 </a>
                 <div class="collapse navbar-collapse align-center d-flex justify-content-center" id="navbarNav">
                     <ul class="navbar-nav gap-5">
@@ -30,15 +31,16 @@
                             <a class="navbar-link ubuntu-bold" aria-current="page" href="">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="navbar-link ubuntu-bold" href="#">About Us</a>
+                            <a class="navbar-link ubuntu-bold" href="#aboutUs">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="navbar-link ubuntu-bold" href="#">Contact Us</a>
+                            <a class="navbar-link ubuntu-bold" href="#contactUs">Contact Us</a>
                         </li>
                     </ul>
 
                 </div>
-                <a class="btn button btn-success ubuntu-regular trynow-btn w-25" style="font-size: larger" href="/app">Try Now!</a>
+                <a class="btn button btn-success ubuntu-regular trynow-btn w-25" style="font-size: larger" href="/app">Try
+                    Now!</a>
             </div>
         </nav>
     </div>
@@ -49,28 +51,69 @@
     </div>
 </header>
 <main>
-    <section class="container">
-        <div class="about-us">
+    <section id="aboutUs">
+        <div class="container about-us mt-5 mb-5">
             <div class="row">
                 <div class="col-6">
-                    <h1 class="ubuntu-bold">About Us</h1>
+                    <h1 class="ubuntu-bold" style="font-size: xxx-large">About Us</h1>
                     <hr>
                     <br>
                     <span class="ubuntu-regular">
-                        Welcome to SmogZilla, where our mission is to empower individuals with knowledge for informed decision-making. We are deeply committed to raising environmental awareness and providing innovative solutions to tackle complex issues. Through our interactive map platform, users gain real-time insights into pollution levels, enabling concerned citizens, enthusiasts, and changemakers alike to access accessible and reliable data.
+                        Welcome to SmogZilla, where our mission is to empower individuals with knowledge for informed decision-making. We are deeply committed to raising environmental awareness and providing innovative solutions to tackle complex issues. Through our interactive map platform, users gain real-time insights into pollution levels, enabling concerned citizens, enthusiasts, and changemakers alike to access accessible and reliable data.<br><br>
 
-At SmogZilla, transparency, accuracy, and user-friendliness are at the forefront of everything we do. Our dedicated team works tirelessly to ensure that our data remains up-to-date and trustworthy. By providing accessible information, we aim to inspire change and contribute to a healthier, cleaner planet for future generations.
+At SmogZilla, transparency, accuracy, and user-friendliness are at the forefront of everything we do. Our dedicated team works tirelessly to ensure that our data remains up-to-date and trustworthy. By providing accessible information, we aim to inspire change and contribute to a healthier, cleaner planet for future generations.<br><br>
 
 Join us in our journey towards a cleaner, greener future. Explore, learn, and make a difference with SmogZilla. Together, let's empower individuals to take action and create positive environmental impact.
                     </span>
                 </div>
                 <div class="col-6">
-                    <img style="image" src="{% static 'images/aboutUs.png' %}">
+                    <img style="width: 100%; height: auto; object-fit: cover" src="{% static 'images/aboutUs.png' %}">
                 </div>
             </div>
         </div>
     </section>
+    <section id="contactUs">
+        <div class="header-background">
+            <h1 class="ubuntu-bold d-flex align-center justify-content-center p-5" style="font-size: xxx-large;color: white">Contact Us</h1>
+            <div class="contact-form w-25 mx-auto align-items-center">
+                <form class="form-bg p-3 ubuntu-bold">
+                    <input name="name" type="text" class="feedback-input" placeholder="Name"/>
+                    <input name="email" type="text" class="feedback-input" placeholder="Email"/>
+                    <textarea name="text" class="feedback-input" placeholder="Comment"></textarea>
+                    <input type="submit" value="SUBMIT"/>
+                </form>
+            </div>
+        </div>
+
+    </section>
 </main>
+<footer class="footer">
+    <ul class="social-media gap-5">
+        <li>
+            <a href="#">
+               <i class="fa-brands fa-facebook"></i>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="separator"></div>
+    <p class="mx-auto align-items-center d-flex justify-content-center">Copyright @ 2024</p>
+</footer>
 <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
