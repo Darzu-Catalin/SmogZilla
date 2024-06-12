@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmogZilla Map Simulator</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+</head>
+<body>
+
+    <div  id='city-aqi-container'></div>
+    <div class = "ubuntu-bold" style = "display: flex; flex-direction: row; gap: 20px; font-size: xx-large; align-content: center; justify-content: center"id='mutiple-city-aqi'></div>
+    <span  id="city-aqi-container"></span>
+    <div  id='map'  style='height:80vh;'  />
+<link  rel="stylesheet"  href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"  />
+<script  src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+<script>
+
+      var  OSM_URL  =  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var  OSM_ATTRIB  =  '&copy;  <a  href="http://openstreetmap.org/copyright">OpenStreetMap</a>  contributors';
+      var  osmLayer  =  L.tileLayer(OSM_URL,  {  attribution:  OSM_ATTRIB  });
+      var token = "8fe9672b33ffe479b6faae876273bdcc94958134";
+      var  WAQI_URL  =  `https://tiles.waqi.info/tiles/usepa-aqi/{z}/{x}/{y}.png?token=${token}`;
+      var  WAQI_ATTR  =  'Air  Quality  Tiles  &copy;  <a  href="http://waqi.info">waqi.info</a>';
+      var  waqiLayer  =  L.tileLayer(WAQI_URL,  {  attribution:  WAQI_ATTR  });
+
+      var  map  =  L.map('map').setView([48.8575,  2.3514],  11);
+      map.addLayer(osmLayer).addLayer(waqiLayer);
+
+    (function  (w,  d,  t,  f)  {
+		w[f]  =  w[f]  ||  function  (c,  k,  n)  {
+			s  =  w[f],  k  =  s['k']  =  (s['k']  ||  (k  ?  ('&k='  +  k)  :  ''));  s['c']  =
+				c  =  (c  instanceof  Array)  ?  c  :  [c];  s['n']  =  n  =  n  ||  0;  L  =  d.createElement(t),  e  =  d.getElementsByTagName(t)[0];
+			L.async  =  1;  L.src  =  '//feed.aqicn.org/feed/'  +  (c[n].city)  +  '/'  +  (c[n].lang  ||  '')  +  '/feed.v1.js?n='  +  n  +  k;
+			e.parentNode.insertBefore(L,  e);
+		};
+	})(window,  document,  'script',  '_aqiFeed');
+
+    //_aqiFeed({display: "%details" , container:  "city-aqi-container",  city:  "beijing"  });
+    _aqiFeed({
+		city:  "beijing",  lang:  "en",  callback:  function  (aqi)  {
+			$("#mutiple-city-aqi").html(aqi.details);
+		}
+	});
+
+    var  cities  =  ["london",  "seoul",  "guangzhou",  "shanghai",  "paris","hongkong"];
+
+var  aqiWidgetConfig  =  [];
+cities.forEach(function(city)  {  aqiWidgetConfig.push({city:city,  callback:  displayCity});  });
+_aqiFeed(aqiWidgetConfig);
+
+function  displayCity(aqi)  {
+	$("#mutiple-city-aqi").append(aqi.text("<center>%cityname<br>%aqi<br><small>%date</small></center>"));
+}
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

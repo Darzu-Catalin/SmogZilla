@@ -20,7 +20,7 @@
 <body>
 <header>
     <div class="header-background p-4">
-        <nav class="container navbar rounded navbar-expand-lg bg-body-tertiary">
+        <nav class="container navbar rounded navbar-expand-lg bg-body-tertiarys">
             <div class="container">
                 <a class="navbar-brand" href="">
                     <img class="rounded" src="{% static 'images/logo.png' %}" style="width: 200px; height: auto">
@@ -73,14 +73,15 @@ Join us in our journey towards a cleaner, greener future. Explore, learn, and ma
         </div>
     </section>
     <section id="contactUs">
-        <div class="header-background">
+        <div class="contact-us-background">
             <h1 class="ubuntu-bold d-flex align-center justify-content-center p-5" style="font-size: xxx-large;color: white">Contact Us</h1>
             <div class="contact-form w-25 mx-auto align-items-center">
-                <form class="form-bg p-3 ubuntu-bold">
+                <form action="{% url 'add review' %}" class="form-bg p-3 ubuntu-bold" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
                     <input name="name" type="text" class="feedback-input" placeholder="Name"/>
                     <input name="email" type="text" class="feedback-input" placeholder="Email"/>
-                    <textarea name="text" class="feedback-input" placeholder="Comment"></textarea>
-                    <input type="submit" value="SUBMIT"/>
+                    <textarea name="comment" class="feedback-input" placeholder="Comment"></textarea>
+                    <button type="submit" class="">Send</button>
                 </form>
             </div>
         </div>
