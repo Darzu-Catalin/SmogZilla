@@ -46,15 +46,24 @@
 
     //_aqiFeed({display: "%details" , container:  "city-aqi-container",  city:  "beijing"  });
     _aqiFeed({
-		city:  "beijing",  lang:  "en",  callback:  function  (aqi)  {
+		city:  "London",  lang:  "en",  callback:  function  (aqi)  {
 			$("#mutiple-city-aqi").html(aqi.details);
 		}
 	});
 
-    var  cities  =  ["london",  "seoul",  "guangzhou",  "shanghai",  "paris","hongkong"];
+    var cities  =  ["beijing","seoul",  "madrid",  "shanghai",  "paris","hongkong", "los angeles", "istanbul", "sydney", "mumbai", "toronto", "chicago", "rome", "bangkok", "budapest", "amsterdam", "athens"];
+
+
+function getRandomCities(cities, num) {
+    var shuffled = cities.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+var randomCities = getRandomCities(cities, 6);
+
 
 var  aqiWidgetConfig  =  [];
-cities.forEach(function(city)  {  aqiWidgetConfig.push({city:city,  callback:  displayCity});  });
+randomCities.forEach(function(city)  {  aqiWidgetConfig.push({city:city,  callback:  displayCity});  });
 _aqiFeed(aqiWidgetConfig);
 
 function  displayCity(aqi)  {
